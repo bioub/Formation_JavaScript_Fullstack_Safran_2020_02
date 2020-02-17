@@ -6,7 +6,7 @@ const porteeClosureModule = 'porteeClosureModule';
 
 function externe() {
   const porteeClosure = 'porteeClosure';
-  function interne() {
+  return function () {
     // debugger;
     const porteeLocale = 'porteeLocale';
     console.log(porteeLocale);
@@ -14,16 +14,16 @@ function externe() {
     console.log(porteeClosureModule);
     console.log(porteeGlobale);
   }
-  interne();
 }
 
-externe();
+const interne = externe();
+interne();
 
 // });
 
 // pile d'appel
 // ^
 // |
-// |interne
-// |externe
+// |
+// |externe - interne
 // +----------------------> temps
