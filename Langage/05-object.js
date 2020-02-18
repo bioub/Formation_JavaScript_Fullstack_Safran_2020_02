@@ -48,6 +48,14 @@ for (const key in coords) {
   }
 }
 
+// Pour boucler sur les propriétés
+for (const key of Object.keys(coords)) {
+  if (coords.hasOwnProperty(key)) {
+    const value = coords[key];
+    console.log(key, value);
+  }
+}
+
 // Simuler des classes
 // -> constructor function
 function Contact(name) {
@@ -96,3 +104,12 @@ console.log(romain.hasOwnProperty('hello'));
 
 console.log(romain.name !== undefined);
 console.log(romain.hello !== undefined);
+
+
+
+// Object.defineProperty(Math, 'sum', {
+//   value: function(a, b) {
+//     return a + b;
+//   },
+//   configurable
+// });
