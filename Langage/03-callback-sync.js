@@ -35,11 +35,18 @@ for (let i = 0; i < names.length; i++) {
   }
 }
 
+// (name4letter) => name4letter.toUpperCase()
+// function (name4letter) { return name4letter.toUpperCase() }
+
 // Depuis ES5
 // Paradigme fonctionnel
 names.filter((n) => n.length === 4)
      .map((name4letter) => name4letter.toUpperCase())
      .forEach((nameUpper) => console.log(nameUpper));
+
+// ES6
+// names.find((n) => n.length === 4)
+// names.findIndex((n) => n.length === 4)
 
 console.log('FIN');
 
