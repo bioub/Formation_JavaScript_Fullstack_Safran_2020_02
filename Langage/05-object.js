@@ -98,6 +98,8 @@ console.log(romain.hello()); // Hello Romain
 const jean = new Contact('Jean');
 console.log(jean.hello()); // Hello Jean
 
+console.log(romain.hello === jean.hello); // true
+
 // Tester si la property existe
 console.log(romain.hasOwnProperty('name'));
 console.log(romain.hasOwnProperty('hello'));

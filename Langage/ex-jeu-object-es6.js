@@ -20,7 +20,7 @@ const random = {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
-}
+};
 
 // dépendance entre fichiers
 const readline = require('readline');
@@ -54,12 +54,10 @@ class Jeu {
       if (entierSaisi < this.entierAlea) {
         console.log('Trop petit');
         this.jouer();
-      }
-      else if (entierSaisi > this.entierAlea) {
+      } else if (entierSaisi > this.entierAlea) {
         console.log('Trop grand');
         this.jouer();
-      }
-      else {
+      } else {
         console.log('Gagné');
         this._rl.close();
       }
@@ -67,9 +65,8 @@ class Jeu {
   }
 }
 
-
 const game = new Jeu({
-  max: 10
+  max: 10,
 });
 game.jouer();
 
