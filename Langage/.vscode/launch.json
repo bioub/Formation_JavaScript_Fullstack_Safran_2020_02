@@ -7,11 +7,11 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Jeu",
+            "name": "Launch",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/ex-jeu.js",
+            "program": "${file}",
             "console": "integratedTerminal"
         }
     ]

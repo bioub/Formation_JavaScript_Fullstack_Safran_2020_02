@@ -40,7 +40,7 @@ function loop() {
     if (entierSaisi < entierAlea) {
       console.log('Trop petit');
        loop();
-    } else if (entierSaisi < entierAlea) {
+    } else if (entierSaisi > entierAlea) {
       console.log('Trop grand');
        loop();
     } else {

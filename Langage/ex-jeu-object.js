@@ -1,58 +1,72 @@
-function getRandom() {
-  return Math.random();
-}
+const random = {
+  get: function () {
+    return Math.random();
+  },
 
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
-}
+  getArbitrary: function (min, max) {
+    return Math.random() * (max - min) + min;
+  },
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+  getInt: function (min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  },
 
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  getIntInclusive: function (min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
 }
 
 // dépendance entre fichiers
 const readline = require('readline');
 
-const rl = readline.createInterface(process.stdin, process.stdout);
+function Jeu(options) {
+  options = options || {};
+  const min = options.min || 0;
+  const max = options.max !== undefined ? options.max : 100;
 
-function loop() {
-  if (essais.length) {
-    console.log('Vous avez déjà joué : ' + essais.join(' - '))
+  this._rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  this.entierAlea = random.getInt(min, max);
+  this.essais = [];
+}
+
+Jeu.prototype.jouer = function () {
+  if (this.essais.length) {
+    console.log('Vous avez déjà joué : ' + this.essais.join(' - '))
   }
-  rl.question('Quel est le nombre ? ', (answer) => {
+  this._rl.question('Quel est le nombre ? ', (answer) => {
     const entierSaisi = parseInt(answer, 10);
 
     if (isNaN(entierSaisi)) {
       console.log('Erreur : il faut saisir un entier');
-      return loop();
+      return this.jouer();
     }
 
-    essais.push(entierSaisi);
+    this.essais.push(entierSaisi);
 
-    if (entierSaisi < entierAlea) {
+    if (entierSaisi < this.entierAlea) {
       console.log('Trop petit');
-       loop();
-    } else if (entierSaisi < entierAlea) {
+      this.jouer();
+    } else if (entierSaisi > this.entierAlea) {
       console.log('Trop grand');
-       loop();
+      this.jouer();
     } else {
       console.log('Gagné');
-      rl.close();
+      this._rl.close();
     }
   });
 }
 
-const entierAlea = getRandomInt(0, 100);
-const essais = [];
-loop();
+const game = new Jeu({
+  max: 10
+});
+game.jouer();
 
 // pile d'appel
 // ^
