@@ -58,23 +58,26 @@ function Contact(name) {
   // }
 }
 
+Contact.instance = null;
+
 Contact.prototype.hello = function() {
   return 'Hello ' + this.name;
 };
 
 // -> sucre syntaxique
-class Contact {
-  constructor(name) {
-    this.name = name;
-    // pas une super pratique
-    // this.hello = function() {
-    //   return 'Hello ' + this.name;
-    // }
-  }
-  hello() {
-    return 'Hello ' + this.name;
-  }
-}
+// class Contact {
+//
+//   constructor(name) {
+//     this.name = name;
+//     // pas une super pratique
+//     // this.hello = function() {
+//     //   return 'Hello ' + this.name;
+//     // }
+//   }
+//   hello() {
+//     return 'Hello ' + this.name;
+//   }
+// }
 
 
 const romain = new Contact('Romain');
