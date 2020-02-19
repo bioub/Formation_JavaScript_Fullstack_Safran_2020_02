@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "Langage"
+		},
+		{
+			"path": "Modules"
+		},
+		{
+			"path": "NodeCLI"
+		},
+		{
+			"path": "Exercice-Build"
+		},
+		{
+			"path": "NodeWeb"
+		},
+		{
+			"path": "Build-Webpack"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Modules"
+	}
+}
