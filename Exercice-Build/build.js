@@ -1,8 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
-const del = require('del');
 const md5 = require('md5');
-const UglifyJS = require('uglify-es');
+const Terser = require('terser');
 
 const distPath = path.resolve(__dirname, 'dist');
 const srcPath = path.resolve(__dirname, 'src');
@@ -12,12 +11,41 @@ const indexHtmlPath = path.resolve(srcPath, 'index.html');
 const indexHtmlDistPath = path.resolve(distPath, 'index.html');
 const appJsDistPath = path.resolve(distPath, 'app.js');
 
-async function build() {
-  // EX 1
+async function removeAndMkdir(distPath) {
   await fs.remove(distPath);
-  console.log('dist removed');
+  await fs.mkdir(distPath);
+  console.log('dist created');
+}
 
-  // EX 2
+async function buildJs() {
+  const buffer1 = await fs.readFile(horlogeJsPath);
+  const buffer2 = await fs.readFile(indexJsPath);
+
+  const buffer = Buffer.concat([buffer1, buffer2]);
+  await fs.writeFile(appJsDistPath, buffer);
+  console.log('js built');
+}
+
+async function buildHtml() {
+  let content = await fs.readFile(indexHtmlPath, { encoding: 'utf-8' });
+
+  content = content
+    .replace(
+      /<script.*<\/script>/s,
+      '<script src="./app.js"></script>',
+    );
+
+  await fs.writeFile(indexHtmlDistPath, content);
+  console.log('html built');
+  // fs.writeFile(indexHtmlDistPath, content).then(() => {
+  //   console.log('html built');
+  // })
+}
+
+async function build() {
+  await removeAndMkdir(distPath);
+  await buildJs();
+  await buildHtml();
 }
 
 build();
