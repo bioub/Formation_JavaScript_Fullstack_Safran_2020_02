@@ -18,10 +18,14 @@ async function removeAndMkdir(distPath) {
 }
 
 async function buildJs() {
-  const buffer1 = await fs.readFile(horlogeJsPath);
-  const buffer2 = await fs.readFile(indexJsPath);
+  // const buffer1 = await fs.readFile(horlogeJsPath);
+  // const buffer2 = await fs.readFile(indexJsPath);
+  const buffers = await Promise.all([
+    fs.readFile(horlogeJsPath),
+    fs.readFile(indexJsPath),
+  ]);
 
-  const buffer = Buffer.concat([buffer1, buffer2]);
+  const buffer = Buffer.concat(buffers);
   await fs.writeFile(appJsDistPath, buffer);
   console.log('js built');
 }
@@ -29,11 +33,10 @@ async function buildJs() {
 async function buildHtml() {
   let content = await fs.readFile(indexHtmlPath, { encoding: 'utf-8' });
 
-  content = content
-    .replace(
-      /<script.*<\/script>/s,
-      '<script src="./app.js"></script>',
-    );
+  content = content.replace(
+    /<script.*<\/script>/s,
+    '<script src="./app.js"></script>',
+  );
 
   await fs.writeFile(indexHtmlDistPath, content);
   console.log('html built');
