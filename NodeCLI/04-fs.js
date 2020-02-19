@@ -47,4 +47,10 @@ async function copy() {
   }
 }
 
-copy();
+function main() {
+  copy().then(() => {
+    console.log('FIN')
+  });
+}
+
+main();

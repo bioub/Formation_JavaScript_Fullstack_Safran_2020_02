@@ -2,7 +2,7 @@
   'use strict'
 
   // const hello = require('./hello').hello; si exports.hello = hello;
-  const hello = require('./hello');
+  const hello = require('./hello').default;
 
   console.log(hello('Romain'));
 

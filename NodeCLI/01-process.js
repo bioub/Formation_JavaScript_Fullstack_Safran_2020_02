@@ -1,9 +1,7 @@
-require('readline')
+console.log(process.env.NODE_ENV);
+console.log(process.env.PATH);
 
-console.log(process.env.NODE_ENV)
-console.log(process.env.PATH)
-
-process.cwd()
+process.cwd();
 
 // process.chdir()
 
