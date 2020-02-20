@@ -51,3 +51,11 @@ names.filter((n) => n.length === 4)
 console.log('FIN');
 
 
+const nbs = [3, 4, 5, 6];
+
+const sum = nbs.reduce((acc, nb) => acc + nb, 0)
+console.log(sum);
+
+// acc: 0, nb: 3 => 3
+// acc: 3, nb: 4 => 7
+// acc: 7

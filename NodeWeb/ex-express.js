@@ -14,7 +14,12 @@ const contacts = [
 const express = require('express');
 
 const app = express();
-app.use(express.json())
+// app.use(express.json())
+
+app.use((req, res, next) => {
+  console.log(req.method + ' ' + req.url);
+  next();
+})
 
 // GET http://localhost:8080/api/contacts
 // reponse en JSON du tableau complet
@@ -31,9 +36,18 @@ app.get('/api/contacts', (req, res) => {
 // en JSON {message: 'Not found'}
 // Array.prototype.find
 app.get('/api/contacts/:id', (req, res) => {
-  console.log(Number(req.params.id));
+  const id = Number(req.params.id);
+  const contact = contacts.find((c) => c.id === id);
 
-  // res.json
+  if (!contact) {
+    // res.statusCode = 404;
+    // return res.json({
+    //   message: 'Contact not found',
+    // });
+    return next();
+  }
+
+  res.json(contact);
 });
 
 
@@ -45,6 +59,24 @@ app.get('/api/contacts/:id', (req, res) => {
 // si le contact n'est pas de le tableau : 404
 // en JSON {message: 'Not found'}
 // Array.prototype.findIndex + splice
+app.delete('/api/contacts/:id', (req, res) => {
+  const id = Number(req.params.id);
+  const contact = contacts.find((c) => c.id === id);
+
+  if (!contact) {
+    // res.statusCode = 404;
+    // return res.json({
+    //   message: 'Contact not found',
+    // });
+
+    return next();
+  }
+
+  const i = contacts.indexOf(contact);
+  contacts.splice(i, 1);
+
+  res.json(contact);
+});
 
 // POST http://localhost:8080/api/contacts
 // en body de la requete du JSON {prenom: 'Mark', nom: 'Zuckerberg'}
@@ -54,6 +86,27 @@ app.get('/api/contacts/:id', (req, res) => {
 // status code : 201
 // Array.prototype.push
 
+// POST /api/contacts HTTP/1.1
+// Host: localhost:8080
+// Content-type: application/json
+// {"prenom": "Mark", "nom": "Zuckerberg"}
+app.post('/api/contacts', express.json(), (req, res) => {
+  const contact = req.body;
+  contact.id = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
+
+  contacts.push(contact);
+
+  res.statusCode = 201;
+  return res.json(contact);
+})
+
+// Middleware 404
+app.use((req, res, next) => {
+  res.statusCode = 404;
+  res.json({
+    message: 'Not Found',
+  })
+})
 
 app.listen(8080, () => {
   console.log(`Server running at http://localhost:8080`);
