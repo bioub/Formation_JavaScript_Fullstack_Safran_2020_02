@@ -5,26 +5,27 @@ const contactCtrl = require('../controllers/contact');
 
 const router = express.Router();
 
-router.get('/', 
+router.get('/',
   contactCtrl.list,
 );
 
-router.get('/:id', 
+router.get('/:id',
   contactCtrl.show,
 );
 
 router.post('/',
   authenticate,
+  // authorize('ROLE_ADMIN'),
   express.json(),
   contactCtrl.add
 );
 
-router.delete('/:id', 
+router.delete('/:id',
   authenticate,
   contactCtrl.delete,
 );
 
-router.put('/:id', 
+router.put('/:id',
   authenticate,
   express.json(),
   contactCtrl.update,

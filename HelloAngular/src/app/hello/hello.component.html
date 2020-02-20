@@ -1,0 +1,5 @@
+<!-- <p>Prénom : <input [value]="name" (input)="name = $event.target.value" /></p> -->
+<!-- <p>Prénom : <input [ngModel]="name" (ngModelChange)="name = $event" /></p> -->
+<!-- [()] BANANA IN A BOX -->
+<p>Prénom : <input [(ngModel)]="name" /></p>
+<p>hello {{ name }}!</p>

@@ -20,9 +20,15 @@
 		},
 		{
 			"path": "Express-REST"
+		},
+		{
+			"path": "DOM"
+		},
+		{
+			"path": "HelloAngular"
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "Modules"
+		"liveServer.settings.multiRootWorkspaceName": "DOM"
 	}
 }
