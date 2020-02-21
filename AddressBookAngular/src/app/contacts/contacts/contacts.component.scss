@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+}
+
+.container > div:not(:first-child) {
+  margin-left: 10px;
+}

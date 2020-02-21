@@ -1,0 +1,14 @@
+<div class="errors" *ngIf="contactForm.touched && contactForm.invalid">
+  <div *ngIf="ngModelPrenom.touched && ngModelPrenom.errors?.required">Le prénom est obligatoire</div>
+</div>
+
+<form #contactForm="ngForm" (submit)="contactForm.valid && submit()">
+  <p>
+    Prénom : <input #ngModelPrenom="ngModel" name="prenom" [(ngModel)]="contact.prenom" required>
+  </p>
+  <p>
+    Nom : <input name="nom" [(ngModel)]="contact.nom">
+  </p>
+  <button>Add</button>
+</form>
+

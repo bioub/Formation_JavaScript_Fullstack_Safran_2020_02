@@ -14,7 +14,7 @@ router.get('/:id',
 );
 
 router.post('/',
-  authenticate,
+  // authenticate,
   // authorize('ROLE_ADMIN'),
   express.json(),
   contactCtrl.add

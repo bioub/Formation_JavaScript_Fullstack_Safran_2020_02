@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './core/home/home.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
+import { ContactsModule } from './contacts/contacts.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,8 +15,10 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
     NotFoundComponent
   ],
   imports: [
+    HttpClientModule,
+    ContactsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, // à la fin car not-found
   ],
   providers: [],
   bootstrap: [AppComponent]

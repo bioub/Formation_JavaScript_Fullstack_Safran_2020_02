@@ -29,6 +29,13 @@ exports.show = async (req, res, next) => {
       return next();
     }
 
+    if (contact.id === '5e4e867a1d8ca485f49b76a2') {
+      setTimeout(() => {
+        res.json(contact);
+      }, 3000);
+      return;
+    }
+
     res.json(contact);
   }
   catch (err) {

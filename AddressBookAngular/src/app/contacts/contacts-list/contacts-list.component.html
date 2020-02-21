@@ -1,0 +1,10 @@
+<!-- ul>li.item*3>a[routerLink] -->
+<ul>
+  <li class="item" *ngFor="let c of contacts">
+    <a [routerLink]="c._id">{{c.prenom}} {{c.nom}}</a>
+  </li>
+</ul>
+
+<p>
+  <a routerLink="create">Ajouter</a>
+</p>
