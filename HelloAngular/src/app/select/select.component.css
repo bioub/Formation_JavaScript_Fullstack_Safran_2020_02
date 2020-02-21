@@ -1,0 +1,26 @@
+.selected {
+    width: 200px;
+    border: 1px solid black;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.items {
+    width: 200px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.item {
+    padding: 5px;
+}
+
+.item.active {
+    background-color: peru;
+}
+
+.item:hover {
+    background-color: chartreuse;
+}

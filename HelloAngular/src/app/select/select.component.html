@@ -1,0 +1,10 @@
+<div class="selected" (click)="opened = !opened">{{ selected }}</div>
+
+<div class="items" *ngIf="opened">
+    <div (click)="onSelect(item)" [class.active]="item === selected" class="item" *ngFor="let item of items">{{item}}</div>
+</div>
+<!-- <ng-template [ngIf]="opened">
+    <div>
+        open
+    </div>
+</ng-template> -->

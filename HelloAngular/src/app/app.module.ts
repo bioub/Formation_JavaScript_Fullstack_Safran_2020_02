@@ -4,11 +4,15 @@ import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello/hello.component';
+import { ClockComponent } from './clock/clock.component';
+import { SelectComponent } from './select/select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HelloComponent
+    HelloComponent,
+    ClockComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,
