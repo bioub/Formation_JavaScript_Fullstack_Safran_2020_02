@@ -26,6 +26,9 @@
 		},
 		{
 			"path": "HelloAngular"
+		},
+		{
+			"path": "AddressBookAngular"
 		}
 	],
 	"settings": {
